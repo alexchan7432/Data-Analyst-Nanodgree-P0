@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <title>Data_Analyst_ND_Project0</title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:8888/static/base/images/favicon.ico?v=30780f272ab4aac64aa073a841546240">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./Data_Analyst_ND_Project0_files/jquery-ui.min.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+
+
+<script type="text/javascript" src="./Data_Analyst_ND_Project0_files/MathJax.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+// MathJax disabled, set as null to distingish from *missing* MathJax,
+// where it will be undefined, and should prompt a dialog later.
+window.mathjax_url = "https://cdn.mathjax.org/mathjax/latest/MathJax.js";
+</script>
+
+<link rel="stylesheet" href="./Data_Analyst_ND_Project0_files/bootstrap-tour.min.css" type="text/css">
+<link rel="stylesheet" href="http://localhost:8888/static/components/codemirror/lib/codemirror.css?v=1c26f7d1f30cbcc58982178f588906d5">
+
+
+    <link rel="stylesheet" href="./Data_Analyst_ND_Project0_files/style.min.css" type="text/css">
+    
+
+<link rel="stylesheet" href="./Data_Analyst_ND_Project0_files/override.css" type="text/css">
+<link rel="stylesheet" href="" id="kernel-css" type="text/css">
+
+
+    <link rel="stylesheet" href="./Data_Analyst_ND_Project0_files/custom.css" type="text/css">
+    <script src="./Data_Analyst_ND_Project0_files/promise.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./Data_Analyst_ND_Project0_files/require.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+      require.config({
+          
+          urlArgs: "v=20150721032959",
+          
+          baseUrl: '/static/',
+          paths: {
+            nbextensions : '/nbextensions',
+            kernelspecs : '/kernelspecs',
+            underscore : 'components/underscore/underscore-min',
+            backbone : 'components/backbone/backbone-min',
+            jquery: 'components/jquery/jquery.min',
+            bootstrap: 'components/bootstrap/js/bootstrap.min',
+            bootstraptour: 'components/bootstrap-tour/build/js/bootstrap-tour.min',
+            jqueryui: 'components/jquery-ui/ui/minified/jquery-ui.min',
+            moment: 'components/moment/moment',
+            codemirror: 'components/codemirror',
+            termjs: 'components/term.js/src/term',
+          },
+          shim: {
+            underscore: {
+              exports: '_'
+            },
+            backbone: {
+              deps: ["underscore", "jquery"],
+              exports: "Backbone"
+            },
+            bootstrap: {
+              deps: ["jquery"],
+              exports: "bootstrap"
+            },
+            bootstraptour: {
+              deps: ["bootstrap"],
+              exports: "Tour"
+            },
+            jqueryui: {
+              deps: ["jquery"],
+              exports: "$"
+            }
+          }
+      });
+
+      require.config({
+          map: {
+              '*':{
+                'contents': 'services/contents',
+              }
+          }
+      });
+    </script>
+
+    
+    
+
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base/js/namespace" src="./Data_Analyst_ND_Project0_files/namespace.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="./Data_Analyst_ND_Project0_files/jquery.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/notebook" src="./Data_Analyst_ND_Project0_files/notebook.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="services/contents" src="./Data_Analyst_ND_Project0_files/contents.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="services/config" src="./Data_Analyst_ND_Project0_files/config.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base/js/utils" src="./Data_Analyst_ND_Project0_files/utils.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base/js/page" src="./Data_Analyst_ND_Project0_files/page.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base/js/events" src="./Data_Analyst_ND_Project0_files/events.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="auth/js/loginwidget" src="./Data_Analyst_ND_Project0_files/loginwidget.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/maintoolbar" src="./Data_Analyst_ND_Project0_files/maintoolbar.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/pager" src="./Data_Analyst_ND_Project0_files/pager.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/quickhelp" src="./Data_Analyst_ND_Project0_files/quickhelp.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/menubar" src="./Data_Analyst_ND_Project0_files/menubar.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/notificationarea" src="./Data_Analyst_ND_Project0_files/notificationarea.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/savewidget" src="./Data_Analyst_ND_Project0_files/savewidget.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/actions" src="./Data_Analyst_ND_Project0_files/actions.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/keyboardmanager" src="./Data_Analyst_ND_Project0_files/keyboardmanager.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/kernelselector" src="./Data_Analyst_ND_Project0_files/kernelselector.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/lib/codemirror" src="./Data_Analyst_ND_Project0_files/codemirror.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/about" src="./Data_Analyst_ND_Project0_files/about.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="custom/custom" src="./Data_Analyst_ND_Project0_files/custom.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="moment" src="./Data_Analyst_ND_Project0_files/moment.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/mode/meta" src="./Data_Analyst_ND_Project0_files/meta.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/toolbar" src="./Data_Analyst_ND_Project0_files/toolbar.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/celltoolbar" src="./Data_Analyst_ND_Project0_files/celltoolbar.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base/js/dialog" src="./Data_Analyst_ND_Project0_files/dialog.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/tour" src="./Data_Analyst_ND_Project0_files/tour.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base/js/notificationarea" src="./Data_Analyst_ND_Project0_files/notificationarea(1).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base/js/keyboard" src="./Data_Analyst_ND_Project0_files/keyboard.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jqueryui" src="./Data_Analyst_ND_Project0_files/jquery-ui.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="bootstrap" src="./Data_Analyst_ND_Project0_files/bootstrap.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/cell" src="./Data_Analyst_ND_Project0_files/cell.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/textcell" src="./Data_Analyst_ND_Project0_files/textcell.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/codecell" src="./Data_Analyst_ND_Project0_files/codecell.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="services/sessions/session" src="./Data_Analyst_ND_Project0_files/session.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="components/marked/lib/marked" src="./Data_Analyst_ND_Project0_files/marked.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/addon/runmode/runmode" src="./Data_Analyst_ND_Project0_files/runmode.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/mathjaxutils" src="./Data_Analyst_ND_Project0_files/mathjaxutils.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/tooltip" src="./Data_Analyst_ND_Project0_files/tooltip.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/celltoolbarpresets/default" src="./Data_Analyst_ND_Project0_files/default.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/celltoolbarpresets/rawcell" src="./Data_Analyst_ND_Project0_files/rawcell.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/celltoolbarpresets/slideshow" src="./Data_Analyst_ND_Project0_files/slideshow.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/scrollmanager" src="./Data_Analyst_ND_Project0_files/scrollmanager.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base/js/notificationwidget" src="./Data_Analyst_ND_Project0_files/notificationwidget.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="underscore" src="./Data_Analyst_ND_Project0_files/underscore-min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="bootstraptour" src="./Data_Analyst_ND_Project0_files/bootstrap-tour.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/addon/edit/matchbrackets" src="./Data_Analyst_ND_Project0_files/matchbrackets.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/addon/edit/closebrackets" src="./Data_Analyst_ND_Project0_files/closebrackets.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/addon/comment/comment" src="./Data_Analyst_ND_Project0_files/comment.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base/js/security" src="./Data_Analyst_ND_Project0_files/security.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/mode/gfm/gfm" src="./Data_Analyst_ND_Project0_files/gfm.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/codemirror-ipythongfm" src="./Data_Analyst_ND_Project0_files/codemirror-ipythongfm.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/outputarea" src="./Data_Analyst_ND_Project0_files/outputarea.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/completer" src="./Data_Analyst_ND_Project0_files/completer.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/mode/python/python" src="./Data_Analyst_ND_Project0_files/python.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/codemirror-ipython" src="./Data_Analyst_ND_Project0_files/codemirror-ipython.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="services/kernels/kernel" src="./Data_Analyst_ND_Project0_files/kernel.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="components/google-caja/html-css-sanitizer-minified" src="./Data_Analyst_ND_Project0_files/html-css-sanitizer-minified.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/mode/markdown/markdown" src="./Data_Analyst_ND_Project0_files/markdown.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/addon/mode/overlay" src="./Data_Analyst_ND_Project0_files/overlay.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/addon/mode/multiplex" src="./Data_Analyst_ND_Project0_files/multiplex.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/mode/stex/stex" src="./Data_Analyst_ND_Project0_files/stex.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="notebook/js/contexthint" src="./Data_Analyst_ND_Project0_files/contexthint.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="services/kernels/comm" src="./Data_Analyst_ND_Project0_files/comm.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="services/kernels/serialize" src="./Data_Analyst_ND_Project0_files/serialize.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/init" src="./Data_Analyst_ND_Project0_files/init.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="codemirror/mode/xml/xml" src="./Data_Analyst_ND_Project0_files/xml.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/manager" src="./Data_Analyst_ND_Project0_files/manager.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_link" src="./Data_Analyst_ND_Project0_files/widget_link.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_bool" src="./Data_Analyst_ND_Project0_files/widget_bool.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_button" src="./Data_Analyst_ND_Project0_files/widget_button.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_box" src="./Data_Analyst_ND_Project0_files/widget_box.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_float" src="./Data_Analyst_ND_Project0_files/widget_float.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_image" src="./Data_Analyst_ND_Project0_files/widget_image.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_int" src="./Data_Analyst_ND_Project0_files/widget_int.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_output" src="./Data_Analyst_ND_Project0_files/widget_output.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_selection" src="./Data_Analyst_ND_Project0_files/widget_selection.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_selectioncontainer" src="./Data_Analyst_ND_Project0_files/widget_selectioncontainer.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget_string" src="./Data_Analyst_ND_Project0_files/widget_string.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="widgets/js/widget" src="./Data_Analyst_ND_Project0_files/widget.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone" src="./Data_Analyst_ND_Project0_files/backbone-min.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">.MathJax_Preview .MJXc-math {color: inherit!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXc-script {font-size: .8em}
+.MJXc-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXc-bold {font-weight: bold}
+.MJXc-italic {font-style: italic}
+.MJXc-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-largeop {font-size: 150%}
+.MJXc-largeop.MJXc-int {vertical-align: -.2em}
+.MJXc-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXc-display {display: block; text-align: center; margin: 1em 0}
+.MJXc-math span {display: inline-block}
+.MJXc-box {display: block!important; text-align: center}
+.MJXc-box:after {content: " "}
+.MJXc-rule {display: block!important; margin-top: .1em}
+.MJXc-char {display: block!important}
+.MJXc-mo {margin: 0 .15em}
+.MJXc-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXc-denom {display: inline-table!important; width: 100%}
+.MJXc-denom > * {display: table-row!important}
+.MJXc-surd {vertical-align: top}
+.MJXc-surd > * {display: block!important}
+.MJXc-script-box > *  {display: table!important; height: 50%}
+.MJXc-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXc-script-box > *:last-child > * {vertical-align: bottom}
+.MJXc-script-box > * > * > * {display: block!important}
+.MJXc-mphantom {visibility: hidden}
+.MJXc-munderover {display: inline-table!important}
+.MJXc-over {display: inline-block!important; text-align: center}
+.MJXc-over > * {display: block!important}
+.MJXc-munderover > * {display: table-row!important}
+.MJXc-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXc-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXc-mtr {display: table-row!important}
+.MJXc-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXc-mtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-mlabeledtr {display: table-row!important}
+.MJXc-mlabeledtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mlabeledtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXc-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXc-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXc-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXc-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXc-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXc-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXc-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXc-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXc-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXc-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_CHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 0; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?rev=2.5.3') format('woff'), url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?rev=2.5.3') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?rev=2.5.3') format('woff'), url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?rev=2.5.3') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?rev=2.5.3') format('woff'), url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?rev=2.5.3') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?rev=2.5.3') format('woff'), url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?rev=2.5.3') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?rev=2.5.3') format('woff'), url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?rev=2.5.3') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?rev=2.5.3') format('woff'), url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?rev=2.5.3') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?rev=2.5.3') format('woff'), url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?rev=2.5.3') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?rev=2.5.3') format('woff'), url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?rev=2.5.3') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?rev=2.5.3') format('woff'), url('https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?rev=2.5.3') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body class="notebook_app  command_mode" data-project="" data-base-url="/" data-ws-url="" data-notebook-name="Data_Analyst_ND_Project0.ipynb" data-notebook-path="Data_Analyst_ND_Project0.ipynb"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+
+<noscript>
+    &lt;div id='noscript'&gt;
+      IPython Notebook requires JavaScript.&lt;br&gt;
+      Please enable it to proceed.
+  &lt;/div&gt;
+</noscript>
+
+<div id="header" style="display: block;">
+  <div id="header-container" class="container">
+  <div id="ipython_notebook" class="nav navbar-brand pull-left"><a href="http://localhost:8888/tree" title="dashboard"><img src="./Data_Analyst_ND_Project0_files/logo.png" alt="Jupyter Notebook"></a></div>
+
+  
+
+  
+
+    <span id="login_widget">
+      
+    </span>
+
+  
+
+  
+
+  
+
+
+<span id="save_widget" class="pull-left save_widget">
+    <span id="notebook_name" class="filename">Data_Analyst_ND_Project0</span>
+    <span class="checkpoint_status" title="Tue, Jul 21, 2015 3:34 AM">Last Checkpoint: an hour ago</span>
+    <span class="autosave_status">(autosaved)</span>
+</span>
+
+<span id="kernel_logo_widget">
+  <img class="current_kernel_logo" src="./Data_Analyst_ND_Project0_files/logo-64x64.png" style="display: inline;">
+</span>
+
+
+  </div>
+  <div class="header-bar"></div>
+
+  
+<div id="menubar-container" class="container">
+<div id="menubar">
+    <div id="menus" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <button type="button" class="btn btn-default navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <i class="fa fa-bars"></i>
+              <span class="navbar-text">Menu</span>
+            </button>
+            <p id="kernel_indicator" class="navbar-text indicator_area">
+              <span class="kernel_indicator_name">Python 2</span>
+              <i id="kernel_indicator_icon" class="kernel_idle_icon" title="Kernel Idle"></i>
+            </p>
+            <i id="readonly-indicator" class="navbar-text" title="This notebook is read-only" style="display: none;">
+                <span class="fa-stack">
+                    <i class="fa fa-save fa-stack-1x"></i>
+                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                </span>
+            </i>
+            <i id="modal_indicator" class="navbar-text modal_indicator" title="Command Mode"></i>
+            <span id="notification_area"><div id="notification_kernel" class="notification_widget btn btn-xs navbar-btn undefined info" style="display: none;"><span></span></div><div id="notification_notebook" class="notification_widget btn btn-xs navbar-btn" style="display: none;"><span></span></div></span>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">File</a>
+                    <ul id="file_menu" class="dropdown-menu">
+                        <li id="new_notebook" class="dropdown-submenu">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">New Notebook</a>
+                            <ul class="dropdown-menu" id="menu-new-notebook-submenu"><li id="new-notebook-submenu-python2"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Python 2</a></li></ul>
+                        </li>
+                        <li id="open_notebook" title="Opens a new window with the Dashboard view">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Open...</a></li>
+                        <!-- <hr/> -->
+                        <li class="divider"></li>
+                        <li id="copy_notebook" title="Open a copy of this notebook&#39;s contents and start a new kernel">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Make a Copy...</a></li>
+                        <li id="rename_notebook"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Rename...</a></li>
+                        <li id="save_checkpoint"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Save and Checkpoint</a></li>
+                        <!-- <hr/> -->
+                        <li class="divider"></li>
+                        <li id="restore_checkpoint" class="dropdown-submenu"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Revert to Checkpoint</a>
+                          <ul class="dropdown-menu"><li><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Tuesday, July 21, 2015 3:34 AM</a></li></ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="print_preview"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Print Preview</a></li>
+                        <li class="dropdown-submenu"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Download as</a>
+                            <ul class="dropdown-menu">
+                                <li id="download_ipynb"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">IPython Notebook (.ipynb)</a></li>
+                                <li id="download_script"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Python (.py)</a></li>
+                                <li id="download_html"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">HTML (.html)</a></li>
+                                <li id="download_markdown"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Markdown (.md)</a></li>
+                                <li id="download_rst"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">reST (.rst)</a></li>
+                                <li id="download_pdf"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">PDF via LaTeX (.pdf)</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="trust_notebook" title="Trust the output of this notebook" class="disabled">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Trusted Notebook</a></li>
+                        <li class="divider"></li>
+                        <li id="kill_and_exit" title="Shutdown this notebook&#39;s kernel, and close this window">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Close and Halt</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Edit</a>
+                    <ul id="edit_menu" class="dropdown-menu">
+                        <li id="cut_cell"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Cut Cell</a></li>
+                        <li id="copy_cell"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Copy Cell</a></li>
+                        <li id="paste_cell_above" class="disabled"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Paste Cell Above</a></li>
+                        <li id="paste_cell_below" class="disabled"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Paste Cell Below</a></li>
+                        <li id="paste_cell_replace" class="disabled"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Paste Cell &amp; Replace</a></li>
+                        <li id="delete_cell"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Delete Cell</a></li>
+                        <li id="undelete_cell" class="disabled"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Undo Delete Cell</a></li>
+                        <li class="divider"></li>
+                        <li id="split_cell"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Split Cell</a></li>
+                        <li id="merge_cell_above"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Merge Cell Above</a></li>
+                        <li id="merge_cell_below"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Merge Cell Below</a></li>
+                        <li class="divider"></li>
+                        <li id="move_cell_up"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Move Cell Up</a></li>
+                        <li id="move_cell_down"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Move Cell Down</a></li>
+                        <li class="divider"></li>
+                        <li id="edit_nb_metadata"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Edit Notebook Metadata</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" class="dropdown-toggle" data-toggle="dropdown">View</a>
+                    <ul id="view_menu" class="dropdown-menu">
+                        <li id="toggle_header" title="Show/Hide the IPython Notebook logo and notebook title (above menu bar)">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Toggle Header</a></li>
+                        <li id="toggle_toolbar" title="Show/Hide the action icons (below menu bar)">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Toggle Toolbar</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Insert</a>
+                    <ul id="insert_menu" class="dropdown-menu">
+                        <li id="insert_cell_above" title="Insert an empty Code cell above the currently active cell">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Insert Cell Above</a></li>
+                        <li id="insert_cell_below" title="Insert an empty Code cell below the currently active cell">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Insert Cell Below</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Cell</a>
+                    <ul id="cell_menu" class="dropdown-menu">
+                        <li id="run_cell" title="Run this cell, and move cursor to the next one">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Run</a></li>
+                        <li id="run_cell_select_below" title="Run this cell, select below">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Run and Select Below</a></li>
+                        <li id="run_cell_insert_below" title="Run this cell, insert below">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Run and Insert Below</a></li>
+                        <li id="run_all_cells" title="Run all cells in the notebook">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Run All</a></li>
+                        <li id="run_all_cells_above" title="Run all cells above (but not including) this cell">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Run All Above</a></li>
+                        <li id="run_all_cells_below" title="Run this cell and all cells below it">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Run All Below</a></li>
+                        <li class="divider"></li>
+                        <li id="change_cell_type" class="dropdown-submenu" title="All cells in the notebook have a cell type. By default, new cells are created as &#39;Code&#39; cells">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Cell Type</a>
+                            <ul class="dropdown-menu">
+                              <li id="to_code" title="Contents will be sent to the kernel for execution, and output will display in the footer of cell">
+                                  <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Code</a></li>
+                              <li id="to_markdown" title="Contents will be rendered as HTML and serve as explanatory text">
+                                  <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Markdown</a></li>
+                              <li id="to_raw" title="Contents will pass through nbconvert unmodified">
+                                  <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Raw NBConvert</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="current_outputs" class="dropdown-submenu"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Current Output</a>
+                            <ul class="dropdown-menu">
+                                <li id="toggle_current_output" title="Hide/Show the output of the current cell">
+                                    <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Toggle</a>
+                                </li>
+                                <li id="toggle_current_output_scroll" title="Scroll the output of the current cell">
+                                    <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Toggle Scrolling</a>
+                                </li>
+                                <li id="clear_current_output" title="Clear the output of the current cell">
+                                    <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Clear</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="all_outputs" class="dropdown-submenu"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">All Output</a>
+                            <ul class="dropdown-menu">
+                                <li id="toggle_all_output" title="Hide/Show the output of all cells">
+                                    <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Toggle</a>
+                                </li>
+                                <li id="toggle_all_output_scroll" title="Scroll the output of all cells">
+                                    <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Toggle Scrolling</a>
+                                </li>
+                                <li id="clear_all_output" title="Clear the output of all cells">
+                                    <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Clear</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Kernel</a>
+                    <ul id="kernel_menu" class="dropdown-menu">
+                        <li id="int_kernel" title="Send KeyboardInterrupt (CTRL-C) to the Kernel">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Interrupt</a>
+                        </li>
+                        <li id="restart_kernel" title="Restart the Kernel">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Restart</a>
+                        </li>
+                        <li id="reconnect_kernel" title="Reconnect to the Kernel">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Reconnect</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="menu-change-kernel" class="dropdown-submenu">
+                            <a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Change kernel</a>
+                            <ul class="dropdown-menu" id="menu-change-kernel-submenu"><li id="kernel-submenu-python2"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Python 2</a></li></ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Help</a>
+                    <ul id="help_menu" class="dropdown-menu">
+                        <li id="notebook_tour" title="A quick tour of the notebook user interface"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">User Interface Tour</a></li>
+                        <li id="keyboard_shortcuts" title="Opens a tooltip with all keyboard shortcuts"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">Keyboard Shortcuts</a></li>
+                        <li class="divider"></li>
+                        
+
+                        
+                            
+                                <li><a href="http://nbviewer.ipython.org/github/ipython/ipython/blob/3.x/examples/Notebook/Index.ipynb" target="_blank" title="Opens in a new window">
+                                <i class="fa fa-external-link menu-icon pull-right"></i>
+                                Notebook Help
+                                </a></li>
+                            
+                                <li><a href="https://help.github.com/articles/markdown-basics/" target="_blank" title="Opens in a new window">
+                                <i class="fa fa-external-link menu-icon pull-right"></i>
+                                Markdown
+                                </a></li>
+                            
+                            
+                        
+                        <li id="kernel-help-links" class="divider"></li><li><a target="_blank" title="Opens in a new window" href="http://docs.python.org/2.7"><i class="fa fa-external-link menu-icon pull-right"></i><span>Python</span></a></li><li><a target="_blank" title="Opens in a new window" href="http://ipython.org/documentation.html"><i class="fa fa-external-link menu-icon pull-right"></i><span>IPython</span></a></li><li><a target="_blank" title="Opens in a new window" href="http://docs.scipy.org/doc/numpy/reference/"><i class="fa fa-external-link menu-icon pull-right"></i><span>NumPy</span></a></li><li><a target="_blank" title="Opens in a new window" href="http://docs.scipy.org/doc/scipy/reference/"><i class="fa fa-external-link menu-icon pull-right"></i><span>SciPy</span></a></li><li><a target="_blank" title="Opens in a new window" href="http://matplotlib.org/contents.html"><i class="fa fa-external-link menu-icon pull-right"></i><span>Matplotlib</span></a></li><li><a target="_blank" title="Opens in a new window" href="http://docs.sympy.org/latest/index.html"><i class="fa fa-external-link menu-icon pull-right"></i><span>SymPy</span></a></li><li><a target="_blank" title="Opens in a new window" href="http://pandas.pydata.org/pandas-docs/stable/"><i class="fa fa-external-link menu-icon pull-right"></i><span>pandas</span></a></li><li class="divider"></li>
+                        <li title="About IPython Notebook"><a id="notebook_about" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#">About</a></li>
+                    </ul>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="maintoolbar" class="navbar">
+  <div class="toolbar-inner navbar-inner navbar-nobg">
+    <div id="maintoolbar-container" class="container toolbar"><div class="btn-group" id="save-notbook"><button class="btn btn-default" title="Save and Checkpoint" data-jupyter-action="ipython.save-notebook"><i class="fa-save fa"></i></button></div><div class="btn-group" id="insert_above_below"><button class="btn btn-default" title="insert cell below" data-jupyter-action="ipython.insert-cell-after"><i class="fa-plus fa"></i></button></div><div class="btn-group" id="cut_copy_paste"><button class="btn btn-default" title="cut selected cell" data-jupyter-action="ipython.cut-selected-cell"><i class="fa-cut fa"></i></button><button class="btn btn-default" title="copy selected cell" data-jupyter-action="ipython.copy-selected-cell"><i class="fa-copy fa"></i></button><button class="btn btn-default" title="paste cell below" data-jupyter-action="ipython.paste-cell-after"><i class="fa-paste fa"></i></button></div><div class="btn-group" id="move_up_down"><button class="btn btn-default" title="move selected cell up" data-jupyter-action="ipython.move-selected-cell-up"><i class="fa-arrow-up fa"></i></button><button class="btn btn-default" title="move selected cell down" data-jupyter-action="ipython.move-selected-cell-down"><i class="fa-arrow-down fa"></i></button></div><div class="btn-group" id="run_int"><button class="btn btn-default" title="run cell, select below" data-jupyter-action="ipython.run-select-next"><i class="fa-play fa"></i></button><button class="btn btn-default" title="interrupt kernel" data-jupyter-action="ipython.interrupt-kernel"><i class="fa-stop fa"></i></button><button class="btn btn-default" title="restart kernel" data-jupyter-action="ipython.restart-kernel"><i class="fa-repeat fa"></i></button></div><select id="cell_type" class="form-control select-xs"><option value="code">Code</option><option value="markdown">Markdown</option><option value="raw">Raw NBConvert</option><option value="heading">Heading</option></select><div class="btn-group"><span class="navbar-text">Cell Toolbar:</span><select id="ctb_select" class="form-control select-xs"><option value="">None</option><option value="Edit Metadata">Edit Metadata</option><option value="Raw Cell Format">Raw Cell Format</option><option value="Slideshow">Slideshow</option></select></div></div>
+  </div>
+</div>
+</div>
+
+<div class="lower-header-bar"></div>
+
+</div>
+
+<div id="site" style="display: block; height: 843px;">
+
+
+<div id="ipython-main-app">
+    <div id="notebook_panel">
+        <div id="notebook" tabindex="-1"><div class="container" id="notebook-container"><div class="cell text_cell rendered selected" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 529px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 21px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-1">#Chopsticks!</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;">A few researchers set out to determine the optimal length of chopsticks for children and adults. They came up with a measure of how effective a pair of chopsticks performed, called the "Food Pinching Performance." The "Food Pinching Performance" was determined by counting the number of peanuts picked and placed in a cup (PPPC).</span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### An investigation for determining the optimum length of chopsticks.</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-link">[Link to Abstract and Paper]</span><span class="cm-string">(http://www.ncbi.nlm.nih.gov/pubmed/15676839)</span><span class="cm-trailing-space-a"> </span><span class="cm-trailing-space-new-line"> </span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-em">*the abstract below was adapted from the link*</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;">Chopsticks are one of the most simple and popular hand tools ever invented by humans, but have not previously been investigated by <span class="cm-link">[ergonomists]</span><span class="cm-string">(https://www.google.com/search?q=ergonomists)</span>. Two laboratory studies were conducted in this research, using a <span class="cm-link">[randomised complete block design]</span><span class="cm-string">(http://dawg.utk.edu/glossary/whatis_rcbd.htm)</span>, to evaluate the effects of the length of the chopsticks on the food-serving performance of adults and children. Thirty-one male junior college students and 21 primary school pupils served as subjects for the experiment to test chopsticks lengths of 180, 210, 240, 270, 300, and 330 mm. The results showed that the food-pinching performance was significantly affected by the length of the chopsticks, and that chopsticks of about 240 and 180 mm long were optimal for adults and pupils, respectively. Based on these findings, the researchers suggested that families with children should provide both 240 and 180 mm long chopsticks. In addition, restaurants could provide 210 mm long chopsticks, considering the trade-offs between ergonomics and cost.</span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### Answer the following questions based on the abstract and the data set, which consists of the data from the thirty-one male junior college students. Download the </span><span class="cm-link cm-header cm-header-3">[data set]</span><span class="cm-string">(https://www.udacity.com/api/nodes/4576183932/supplemental_media/chopstick-effectivenesscsv/download)</span><span class="cm-header cm-header-3">.</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-strong">**If you double click on this cell**</span>, you will see the text change so that all of the formatting is removed. This allows you to edit this block of text. This block of text is written using <span class="cm-link">[Markdown]</span><span class="cm-string">(http://daringfireball.net/projects/markdown/syntax)</span>, which is a way to format text using headers, links, italics, and many other options. You will learn more about Markdown later in the Nanodegree Program. Hit shift + enter or shift + return to show the formatted text.</span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 529px;"></div><div class="CodeMirror-gutters" style="display: none; height: 561px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><h1 id="Chopsticks!">Chopsticks!<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#Chopsticks!">¶</a></h1>
+<p>A few researchers set out to determine the optimal length of chopsticks for children and adults. They came up with a measure of how effective a pair of chopsticks performed, called the "Food Pinching Performance." The "Food Pinching Performance" was determined by counting the number of peanuts picked and placed in a cup (PPPC).</p>
+<h3 id="An-investigation-for-determining-the-optimum-length-of-chopsticks.">An investigation for determining the optimum length of chopsticks.<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#An-investigation-for-determining-the-optimum-length-of-chopsticks.">¶</a></h3>
+<p><a href="http://www.ncbi.nlm.nih.gov/pubmed/15676839" target="_blank">Link to Abstract and Paper</a><br><em>the abstract below was adapted from the link</em></p>
+<p>Chopsticks are one of the most simple and popular hand tools ever invented by humans, but have not previously been investigated by <a href="https://www.google.com/search?q=ergonomists" target="_blank">ergonomists</a>. Two laboratory studies were conducted in this research, using a <a href="http://dawg.utk.edu/glossary/whatis_rcbd.htm" target="_blank">randomised complete block design</a>, to evaluate the effects of the length of the chopsticks on the food-serving performance of adults and children. Thirty-one male junior college students and 21 primary school pupils served as subjects for the experiment to test chopsticks lengths of 180, 210, 240, 270, 300, and 330 mm. The results showed that the food-pinching performance was significantly affected by the length of the chopsticks, and that chopsticks of about 240 and 180 mm long were optimal for adults and pupils, respectively. Based on these findings, the researchers suggested that families with children should provide both 240 and 180 mm long chopsticks. In addition, restaurants could provide 210 mm long chopsticks, considering the trade-offs between ergonomics and cost.</p>
+<h3 id="Answer-the-following-questions-based-on-the-abstract-and-the-data-set,-which-consists-of-the-data-from-the-thirty-one-male-junior-college-students.-Download-the-data-set.">Answer the following questions based on the abstract and the data set, which consists of the data from the thirty-one male junior college students. Download the <a href="https://www.udacity.com/api/nodes/4576183932/supplemental_media/chopstick-effectivenesscsv/download" target="_blank">data set</a>.<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#Answer-the-following-questions-based-on-the-abstract-and-the-data-set,-which-consists-of-the-data-from-the-thirty-one-male-junior-college-students.-Download-the-data-set.">¶</a></h3>
+<p><strong>If you double click on this cell</strong>, you will see the text change so that all of the formatting is removed. This allows you to edit this block of text. This block of text is written using <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a>, which is a way to format text using headers, links, italics, and many other options. You will learn more about Markdown later in the Nanodegree Program. Hit shift + enter or shift + return to show the formatted text.</p>
+</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 80px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 18px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### What is the independent variable in the experiment?</span></span></pre><pre class=""><span style="padding-right: 0.1px;">You can either double click on this cell to add your answer in this cell, or use the plus sign in the toolbar (Insert cell below) to add your answer in a new cell.</span></pre><pre class=""><span style="padding-right: 0.1px;">Indepdent variable is Length of chopsticks.</span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 80px;"></div><div class="CodeMirror-gutters" style="display: none; height: 95px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><h3 id="What-is-the-independent-variable-in-the-experiment?">What is the independent variable in the experiment?<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#What-is-the-independent-variable-in-the-experiment?">¶</a></h3>
+<p>You can either double click on this cell to add your answer in this cell, or use the plus sign in the toolbar (Insert cell below) to add your answer in a new cell.
+Indepdent variable is Length of chopsticks.</p>
+</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 63px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 18px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### What is the dependent variable in the experiment?</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;">Dependent variable is  Food Pinching Performance</span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 63px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><h3 id="What-is-the-dependent-variable-in-the-experiment?">What is the dependent variable in the experiment?<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#What-is-the-dependent-variable-in-the-experiment?">¶</a></h3>
+<p>Dependent variable is  Food Pinching Performance</p>
+</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 63px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 18px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### How is the dependent variable operationally defined?</span></span></pre><pre class=""><span style="padding-right: 0.1px;">Operationally defined as peanuts picked and places in a cup (PPPC).</span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 63px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><h3 id="How-is-the-dependent-variable-operationally-defined?">How is the dependent variable operationally defined?<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#How-is-the-dependent-variable-operationally-defined?">¶</a></h3>
+<p>Operationally defined as peanuts picked and places in a cup (PPPC).</p>
+</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 115px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 18px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### Based on the description of the experiment and the data set, which two variables do you know were controlled?</span></span></pre><pre class=""><span style="padding-right: 0.1px;">Think about the participants who generated the data and what they share in common. You don't need to guess these variables, such as the material of the chopsticks, or read the full paper to determine these variables.</span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;">Length of chopsticks and type of human (male junior college students and primary school pupils)</span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 115px;"></div><div class="CodeMirror-gutters" style="display: none; height: 130px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><h3 id="Based-on-the-description-of-the-experiment-and-the-data-set,-which-two-variables-do-you-know-were-controlled?">Based on the description of the experiment and the data set, which two variables do you know were controlled?<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#Based-on-the-description-of-the-experiment-and-the-data-set,-which-two-variables-do-you-know-were-controlled?">¶</a></h3>
+<p>Think about the participants who generated the data and what they share in common. You don't need to guess these variables, such as the material of the chopsticks, or read the full paper to determine these variables.</p>
+<p>Length of chopsticks and type of human (male junior college students and primary school pupils)</p>
+</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 62px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 16.5px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;">One great advantage of ipython notebooks is that you can document your data analysis using code, add comments to the code, or even add blocks of text using Markdown. These notebooks allow you to collaborate with others and share your work. For now, let's see some code for doing statistics.</span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 62px;"></div><div class="CodeMirror-gutters" style="display: none; height: 77px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><p>One great advantage of ipython notebooks is that you can document your data analysis using code, add comments to the code, or even add blocks of text using Markdown. These notebooks allow you to collaborate with others and share your work. For now, let's see some code for doing statistics.</p>
+</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt">In&nbsp;[2]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 778px; margin-bottom: -15px; border-right-width: 15px; min-height: 96px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-variable">pandas</span> <span class="cm-keyword">as</span> <span class="cm-variable">pd</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-comment"># pandas is a software library for data manipulation and analysis</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-comment"># We commonly use shorter nicknames for certain packages. Pandas is often abbreviated to pd.</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-comment"># hit shift + enter to run this cell or block of code</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 96px;"></div><div class="CodeMirror-gutters" style="display: none; height: 111px;"></div></div></div></div></div></div><div class="widget-area" style="display: none;"><div class="prompt"><button class="close">×</button></div><div class="widget-subarea"></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output" style=""></div><div class="output" style=""></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt">In&nbsp;[3]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true" style="display: block; right: 0px; left: 0px;"><div style="height: 100%; min-height: 1px; width: 1141px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 1140.875px; margin-bottom: -15px; border-right-width: 15px; min-height: 113px; padding-right: 0px; padding-bottom: 15px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">path</span> = <span class="cm-string">r'~/Downloads/chopstick-effectiveness.csv'</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-comment"># Change the path to the location where the chopstick-effectiveness.csv file is located on your computer.</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-comment"># If you get an error when running this block of code, be sure the chopstick-effectiveness.csv is located at the path on your computer.</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">dataFrame</span> = <span class="cm-variable">pd</span>.<span class="cm-variable">read_csv</span>(<span class="cm-variable">path</span>)</span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">dataFrame</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 128px;"></div><div class="CodeMirror-gutters" style="display: none; height: 143px;"></div></div></div></div></div></div><div class="widget-area" style="display: none;"><div class="prompt"><button class="close">×</button></div><div class="widget-subarea"></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output" style=""></div><div class="output" style=""><div class="output_area"><div class="prompt output_prompt">Out[3]:</div><div class="output_subarea output_html rendered_html output_result"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Food.Pinching.Efficiency</th>
+      <th>Individual</th>
+      <th>Chopstick.Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>19.55</td>
+      <td>1</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>27.24</td>
+      <td>2</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>28.76</td>
+      <td>3</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>31.19</td>
+      <td>4</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>21.91</td>
+      <td>5</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>27.62</td>
+      <td>6</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>29.46</td>
+      <td>7</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>26.35</td>
+      <td>8</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>26.69</td>
+      <td>9</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>30.22</td>
+      <td>10</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>27.81</td>
+      <td>11</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>23.46</td>
+      <td>12</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>23.64</td>
+      <td>13</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>27.85</td>
+      <td>14</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>20.62</td>
+      <td>15</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>25.35</td>
+      <td>16</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>28.00</td>
+      <td>17</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>23.49</td>
+      <td>18</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>27.77</td>
+      <td>19</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>18.48</td>
+      <td>20</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>23.01</td>
+      <td>21</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>22.66</td>
+      <td>22</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>23.24</td>
+      <td>23</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>22.82</td>
+      <td>24</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>17.94</td>
+      <td>25</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>26.67</td>
+      <td>26</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>28.98</td>
+      <td>27</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>21.48</td>
+      <td>28</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>14.47</td>
+      <td>29</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>28.29</td>
+      <td>30</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>156</th>
+      <td>26.18</td>
+      <td>2</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>157</th>
+      <td>25.93</td>
+      <td>3</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>28.61</td>
+      <td>4</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>20.54</td>
+      <td>5</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>26.44</td>
+      <td>6</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>29.36</td>
+      <td>7</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>19.77</td>
+      <td>8</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>163</th>
+      <td>31.69</td>
+      <td>9</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>164</th>
+      <td>24.64</td>
+      <td>10</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>165</th>
+      <td>22.09</td>
+      <td>11</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>166</th>
+      <td>23.42</td>
+      <td>12</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>167</th>
+      <td>28.63</td>
+      <td>13</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>168</th>
+      <td>26.30</td>
+      <td>14</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>169</th>
+      <td>22.89</td>
+      <td>15</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>170</th>
+      <td>22.68</td>
+      <td>16</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>171</th>
+      <td>30.92</td>
+      <td>17</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>172</th>
+      <td>20.74</td>
+      <td>18</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>173</th>
+      <td>27.24</td>
+      <td>19</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>174</th>
+      <td>17.12</td>
+      <td>20</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>175</th>
+      <td>23.63</td>
+      <td>21</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>176</th>
+      <td>20.91</td>
+      <td>22</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>177</th>
+      <td>23.49</td>
+      <td>23</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>178</th>
+      <td>24.86</td>
+      <td>24</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>179</th>
+      <td>16.28</td>
+      <td>25</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>180</th>
+      <td>21.52</td>
+      <td>26</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>181</th>
+      <td>27.22</td>
+      <td>27</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>182</th>
+      <td>17.41</td>
+      <td>28</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>183</th>
+      <td>16.42</td>
+      <td>29</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>184</th>
+      <td>28.22</td>
+      <td>30</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <th>185</th>
+      <td>27.52</td>
+      <td>31</td>
+      <td>330</td>
+    </tr>
+  </tbody>
+</table>
+<p>186 rows × 3 columns</p>
+</div></div></div></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 45px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 16.5px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;">Let's do a basic statistical calculation on the data using code! Run the block of code below to calculate the average "Food Pinching Efficiency" for all 31 participants and all chopstick lengths.</span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 60px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><p>Let's do a basic statistical calculation on the data using code! Run the block of code below to calculate the average "Food Pinching Efficiency" for all 31 participants and all chopstick lengths.</p>
+</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt">In&nbsp;[4]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 373.859375px; margin-bottom: -15px; border-right-width: 15px; min-height: 28px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code"><pre><span style="padding-right: 0.1px;"><span class="cm-variable">dataFrame</span>[<span class="cm-string">'Food.Pinching.Efficiency'</span>].<span class="cm-variable">mean</span>()</span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 28px;"></div><div class="CodeMirror-gutters" style="display: none; height: 43px;"></div></div></div></div></div></div><div class="widget-area" style="display: none;"><div class="prompt"><button class="close">×</button></div><div class="widget-subarea"></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output" style=""></div><div class="output" style=""><div class="output_area"><div class="prompt output_prompt">Out[4]:</div><div class="output_subarea output_text output_result"><pre>25.00559139784947</pre></div></div></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 62px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 16.5px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;">This number is helpful, but the number doesn't let us know which of the chopstick lengths performed best for the thirty-one male junior college students. Let's break down the data by chopstick length. The next block of code will generate the average "Food Pinching Effeciency" for each chopstick length. Run the block of code below.</span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 62px;"></div><div class="CodeMirror-gutters" style="display: none; height: 77px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><p>This number is helpful, but the number doesn't let us know which of the chopstick lengths performed best for the thirty-one male junior college students. Let's break down the data by chopstick length. The next block of code will generate the average "Food Pinching Effeciency" for each chopstick length. Run the block of code below.</p>
+</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt">In&nbsp;[7]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true" style="display: block; right: 0px; left: 0px;"><div style="height: 100%; min-height: 1px; width: 1427px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 1427px; margin-bottom: -15px; border-right-width: 15px; min-height: 79px; padding-right: 0px; padding-bottom: 15px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">meansByChopstickLength</span> = <span class="cm-variable">dataFrame</span>.<span class="cm-variable">groupby</span>(<span class="cm-string">'Chopstick.Length'</span>)[<span class="cm-string">'Food.Pinching.Efficiency'</span>].<span class="cm-variable">mean</span>().<span class="cm-variable">reset_index</span>()</span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">meansByChopstickLength</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-comment"># reset_index() changes Chopstick.Length from an index to column. Instead of the index being the length of the chopsticks, the index is the row numbers 0, 1, 2, 3, 4, 5.</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 94px;"></div><div class="CodeMirror-gutters" style="display: none; height: 109px;"></div></div></div></div></div></div><div class="widget-area" style="display: none;"><div class="prompt"><button class="close">×</button></div><div class="widget-subarea"></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output" style=""></div><div class="output" style=""><div class="output_area"><div class="prompt output_prompt">Out[7]:</div><div class="output_subarea output_html rendered_html output_result"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Chopstick.Length</th>
+      <th>Food.Pinching.Efficiency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>180</td>
+      <td>24.935161</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>210</td>
+      <td>25.483871</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>240</td>
+      <td>26.322903</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>270</td>
+      <td>24.323871</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>300</td>
+      <td>24.968065</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>330</td>
+      <td>23.999677</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 63px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 18px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### Which chopstick length performed the best for the group of thirty-one male junior college students?</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 63px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><h3 id="Which-chopstick-length-performed-the-best-for-the-group-of-thirty-one-male-junior-college-students?">Which chopstick length performed the best for the group of thirty-one male junior college students?<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#Which-chopstick-length-performed-the-best-for-the-group-of-thirty-one-male-junior-college-students?">¶</a></h3>
+</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt">In&nbsp;[8]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 938.578125px; margin-bottom: -15px; border-right-width: 15px; min-height: 130px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-comment"># Causes plots to display within the notebook rather than in a new window</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-operator">%</span><span class="cm-variable">pylab</span> <span class="cm-variable">inline</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-variable">matplotlib</span>.<span class="cm-variable">pyplot</span> <span class="cm-keyword">as</span> <span class="cm-variable">plt</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">plt</span>.<span class="cm-variable">scatter</span>(<span class="cm-variable">x</span>=<span class="cm-variable">meansByChopstickLength</span>[<span class="cm-string">'Chopstick.Length'</span>], <span class="cm-variable">y</span>=<span class="cm-variable">meansByChopstickLength</span>[<span class="cm-string">'Food.Pinching.Efficiency'</span>])</span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">plt</span>.<span class="cm-variable">show</span>()</span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 130px;"></div><div class="CodeMirror-gutters" style="display: none; height: 145px;"></div></div></div></div></div></div><div class="widget-area" style="display: none;"><div class="prompt"><button class="close">×</button></div><div class="widget-subarea"></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output" style=""></div><div class="output" style=""><div class="output_area"><div class="prompt"></div><div class="output_subarea output_text output_stream output_stdout"><pre>Populating the interactive namespace from numpy and matplotlib
+</pre></div></div><div class="output_area"><div class="prompt"></div><div class="output_subarea output_png"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX4AAAEACAYAAAC08h1NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAFKpJREFUeJzt3X+MXeV95/H3J5hoTYiW0KA4BkdOVmGVdtnFDWGRSLOTTT02QYJYllqhpXV3o5BWLSBkNW7oH7iNVpRUQ/ljtdWCQPU22WQjwIiS0uthxSggLT/C2tiASUkDaUyAsGG1woq1cevv/nGPyWSYuTOeX3fs5/2SRpx7znnufMbz8LlnnnvvTKoKSVI73jHsAJKk5WXxS1JjLH5JaozFL0mNsfglqTEWvyQ1ZmDxJ1mX5OEkzyZ5Jsl1k45dm+Rgt/+WGca/lGR/kr1Jnljs8JKkE7dqluNHgRuqal+SM4GnkowDa4ArgH9ZVUeTnDPD+AJGquqNxYssSVqIgcVfVa8Cr3bbh5McBM4FPgfcXFVHu2OvD7ibLFJWSdIimPMaf5L1wAbgceB84BNJHksykeSiGYYV8FCSbyf53ELDSpIWbralHgC6ZZ67geur6s0kq4D3VNUlST4GfAP40DRDL62qV7qloPEkz1fVI4uWXpJ0wmYt/iSnA/cAX6mq+7rdh4B7AarqySTHkvxCVf148tiqeqX77+tJdgMXAz9X/En8ZUGSNA9VNa+l9Nle1RPgTuC5qrpt0qH7gH/bnXM+8M6ppZ/kjCTv7rbfBYwCB2YIv6I+brrppqFnOBkyrdRcZjJTC7kWYrYr/kuBq4H9SfZ2+74I3AXcleQA8FPgN7uCXwvcUVWX03/lz739xw5WAV+tqj0LSitJWrDZXtXzKDP/VPAb05z/Q+Dybvt7wIULDShJWly+c3caIyMjw47wNisxE6zMXGaaGzPN3UrNNV9Z6FrRggMkNewMknSySUItxZO7kqRTj8UvSY2x+CWpMRa/JDXG4tcpo9frMTq6ldHRrfR6vWHHkVYsX9WjU0Kv12PLlm0cOdL/0xCrV+9g9+5dbNq0acjJpKWxkFf1WPw6JYyObmV8/ApgW7dnFxs33s+ePfcMM5a0ZHw5pyRpzub0a5mllW779mt49NFtHDnSv7169Q62b9813FDSCuVSj04ZvV6PsbHbgf4Dgev7OpW5xi9JjXGNX5I0Zxa/JDXG4pekxlj8ktQYi1+SGmPxS1JjLH5JaozFL0mNsfglqTEWvyQ1xuKXpMZY/JLUGItfkhpj8UtSYyx+SWrMwOJPsi7Jw0meTfJMkusmHbs2ycFu/y0zjN+c5PkkLyTZsdjhJUknbuAfYkmyBlhTVfuSnAk8BXwGWAPcCHy6qo4mOaeqXp8y9jTgO8CvAi8DTwJXVdXBKef5h1gk6QQt2R9iqapXq2pft30YOAicC/w2cHNVHe2OvT7N8IuB71bVS915XweunE9ISdLimfMaf5L1wAbgceB84BNJHksykeSiaYacC/xg0u1D3T5J0hCtmstJ3TLP3cD1VfVmklXAe6rqkiQfA74BfGjKMNdvJGkFmrX4k5wO3AN8paru63YfAu4FqKonkxxL8gtV9eNJQ18G1k26va4b9zY7d+58a3tkZISRkZET+BIk6dQ3MTHBxMTEotzXbE/uBtgF/Liqbpi0//PA2qq6Kcn5wENV9YEpY1fRf3L3U8APgSfwyV1JWhRL9uQucClwNfDJJHu7j83AXcCHkhwAvgb8ZhdkbZJvAlTVPwC/B/SA54D/PrX0JUnLb+AV/7IE8Ipfkk7YUl7xS5JOMRa/JDXG4pekxlj8ktQYi1+SGmPxS1JjLH5JaozFL0mNsfglqTEWvyQ1xuKXpMZY/JLUGItfkhpj8UtSYyx+SWqMxS9JjbH4JakxFr8kNcbil6TGWPyS1BiLX5IaY/FLUmMsfklqjMUvSY2x+CWpMRa/JDXG4pekxlj8ktQYi1+SGjOw+JOsS/JwkmeTPJPkum7/ziSHkuztPjbPMP6lJPu7c55Yii9AknRiUlUzH0zWAGuqal+SM4GngM8Avwa8WVW3Drzz5EXgo1X1xoBzalAGSdLbJaGqMp+xA6/4q+rVqtrXbR8GDgLnHv+8c803n2BafL1ej9HRrYyObqXX6w07jqQhmfMaf5L1wAbgsW7XtUmeTnJnkrNmGFbAQ0m+neRzC0qqBen1emzZso3x8SsYH7+CLVu2Wf5So1bN5aRumedu4PqqOpzkz4E/7g5/CRgDPjvN0Eur6pUk5wDjSZ6vqkemnrRz5863tkdGRhgZGTmhL0KzGxu7nSNHbgG2AXDkSH/fpk2bhhtM0pxMTEwwMTGxKPc1cI0fIMnpwAPAg1V12zTH1wN/VVUXzHI/NwGHq2psyn7X+JfB6OhWxsev4Hjxwy42bryfPXvuGWYsSfO0ZGv8SQLcCTw3ufSTvH/SaVuAA9OMPSPJu7vtdwGj052n5bF9+zWsXr0D2AXsYvXqHWzffs2wY0kagtle1fNx4FvAfvrr9QA3AlcBF3b7XgQ+X1WvJVkL3FFVlyf5EHBvN2YV8NWqunmaz+EV/zLp9XqMjd0O9B8IXOaRTl4LueKfdalnqVn8knTilmypR5J06rH4JakxFr8kNcbil6TGWPyS1BiLX5IaY/FLUmMsfklqjMUvSY2x+CWpMRa/JDXG4pekxlj8ktQYi1+SGmPxS1JjLH5JaozFL0mNsfglqTEWvyQ1xuKXpMZY/JLUGItfkhpj8UtSYyx+SWqMxS9JjbH4JakxFr8kNcbil6TGDCz+JOuSPJzk2STPJLmu278zyaEke7uPzTOM35zk+SQvJNmxFF+AJOnEpKpmPpisAdZU1b4kZwJPAZ8Bfg14s6puHTD2NOA7wK8CLwNPAldV1cEp59WgDJKkt0tCVWU+Ywde8VfVq1W1r9s+DBwEzj3+eWe574uB71bVS1V1FPg6cOV8QkqSFs+c1/iTrAc2AI91u65N8nSSO5OcNc2Qc4EfTLp9iJ89aEiShmTVXE7qlnnuBq6vqsNJ/hz44+7wl4Ax4LNThs15/Wbnzp1vbY+MjDAyMjLXoZJOAb1ej7Gx2wHYvv0aNm3aNOREK8/ExAQTExOLcl8D1/gBkpwOPAA8WFW3TXN8PfBXVXXBlP2XADuranN3+4vAsaq6Zcp5rvFLDev1emzZso0jR/rVsHr1Dnbv3mX5z2LJ1viTBLgTeG5y6Sd5/6TTtgAHphn+beDDSdYneSfw68D98wm5XHq9HqOjWxkd3Uqv1xt2HKkJY2O3d6W/Deg/ABy/+tfSmG2p51LgamB/kr3dvhuBq5JcSH8550Xg8wBJ1gJ3VNXlVfUPSX4P6AGnAXdOfUXPSjL1quPRR7d51SHplDTrUs+SB1ghSz2jo1sZH7+C/lUHwC42bryfPXvuGWYs6ZTnUs/8LGSpZ05P7krSUtm0aRO7d++a9OSupb/UvOLveNUh6WSykCt+i38SX1Im6WRh8UtSY5bs5ZySpFOPxS9JjbH4JakxFr8kNcbil6TGWPyS1BiLX5IaY/FLUmMsfklqjMUvSY2x+CWpMRa/JDXG4pekxlj8ktQYi1+SGmPxS1JjLH5JaozFL0mNsfglqTEWvyQ1xuKXpMZY/JLUGItfkhpj8UtSYwYWf5J1SR5O8mySZ5JcN+X49iTHkpw9w/iXkuxPsjfJE4sZXJI0P6tmOX4UuKGq9iU5E3gqyXhVHUyyDtgIfH/A+AJGquqNRcorSVqggVf8VfVqVe3rtg8DB4G13eFbgS/M4XNkQQklSYtqzmv8SdYDG4DHk1wJHKqq/bMMK+ChJN9O8rl5p5QkLZrZlnoA6JZ57gauB44BN9Jf5nnrlBmGXlpVryQ5BxhP8nxVPTL1pJ07d761PTIywsjIyJzCS1IrJiYmmJiYWJT7SlUNPiE5HXgAeLCqbktyAfAQ8JPulPOAl4GLq+pHA+7nJuBwVY1N2V+zZZAk/bwkVNW8ltJne1VPgDuB56rqNoCqOlBV76uqD1bVB4FDwC9PLf0kZyR5d7f9LmAUODCfkJKkxTPbGv+lwNXAJ7uXZO5NctmUc966XE+yNsk3u5trgEeS7AMeBx6oqj2LFVySND+zLvUseQCXeiTphC3ZUo8k6dRj8UtSYyx+SWqMxS9JjbH4JakxFr8kNcbil04SvV6P0dGtjI5updfrDTuOTmK+jl86CfR6PbZs2caRI7cAsHr1Dnbv3sWmTZuGnEzDspDX8Vv80klgdHQr4+NXANu6PbvYuPF+9uy5Z5ixNES+gUuSNGdz+rXMkoZr+/ZrePTRbRw50r+9evUOtm/fNdxQOmm51COdJHq9HmNjtwP9BwLX99vmGr8kNcY1fknSnFn8ktQYi1+SGmPxS1JjLH5JaozFL0mNsfglqTEWvyQ1xuKXpMZY/JLUGItfkhpj8UtSYyx+SWqMxS9JjbH4JakxA4s/ybokDyd5NskzSa6bcnx7kmNJzp5h/OYkzyd5IcmOxQwuSZqf2a74jwI3VNUvAZcAv5vkI9B/UAA2At+fbmCS04D/BGwGfhG46vhYSdLwDCz+qnq1qvZ124eBg8Da7vCtwBcGDL8Y+G5VvVRVR4GvA1cuPLIknVx6vR6jo1sZHd1Kr9cbdpy5/7H1JOuBDcDjSa4EDlXV/mTGv/x1LvCDSbcPAf96fjEl6eTU6/XYsmUbR47cAsCjj25j9+5dQ/2byXMq/iRnAncD1wPHgBvpL/O8dco0w/xDupKaNzZ2e1f62wA4cqS/b0UXf5LTgXuAr1TVfUkuANYDT3dX++cBTyW5uKp+NGnoy8C6SbfX0b/qf5udO3e+tT0yMsLIyMgJfRGSdKqbmJhgYmJiUe4rVTNfmKff7LuAH1fVDTOc8yLw0ap6Y8r+VcB3gE8BPwSeAK6qqoNTzqtBGSTpZDZ1qWf16h2LstSThKqaca194NhZiv/jwLeA/fxs6ebGqnpw0jnfAy6qqjeSrAXuqKrLu2OXAbcBpwF3VtXN03wOi1/SKa3X6zE2djsA27dfsyjLPEtW/MvB4pekE7eQ4vedu5LUGItfkhpj8UtSYyx+SWqMxS9JjbH4JakxFr8kNcbil6TGWPyS1BiLX5IaY/FLUmMsfklqjMUvSY2x+CWpMRa/JDXG4pekxlj8ktQYi1+SGmPxS1JjLH5JaozFL0mNsfglqTEWvyQ1xuKXpMZY/JLUGItfkhpj8UtSYyx+SWrMwOJPsi7Jw0meTfJMkuu6/V9K8nSSfUn+R5J1M4x/Kcn+JHuTPLEUX4Ak6cTMdsV/FLihqn4JuAT43SQfAb5cVf+qqi4E7gNummF8ASNVtaGqLl601EtsYmJi2BHeZiVmgpWZy0xzY6a5W6m55mtg8VfVq1W1r9s+DBwE1lbVm5NOOxP43wPuJgtOucxW4jd5JWaClZnLTHNjprlbqbnma9VcT0yyHtgAPN7d/o/AbwA/of/TwHQKeCjJPwL/paruWEhYSdLCzenJ3SRnAncD13dX/lTVH1bVB4C/AP5shqGXVtUG4DL6y0S/svDIkqSFSFUNPiE5HXgAeLCqbpvm+AeAv66qfzHL/dwEHK6qsSn7BweQJE2rqua1lD5wqSdJgDuB5yaXfpIPV9UL3c0rgb3TjD0DOK2q3kzyLmAU+KPFCi5Jmp/Z1vgvBa4G9ic5Xu43Ap9N8s+BfwT+DvgdgCRrgTuq6nJgDXBv/7GDVcBXq2rP4n8JkqQTMetSjyTp1LKk79xNcleS15IcmLL/2iQHuzeF3TJp/xeTvJDk+SSjy5krycVJnujebPZkko8tZ64Bb5Y7O8l4kr9NsifJWcuVa0CmP+2+f08nuTfJPx12pknHtyc5luTslZBpWHN9wPdu2PP8nyR5vHvz53NJbu72D3Oez5RpmPN82kyTji9snlfVkn0Av0L/JaAHJu37JDAOnN7dPqf77y8C+4DTgfXAd4F3LGOuCWBTt30Z8PBy5qK/NHZht30m8B3gI8CXgS90+3cAf7JcuQZk2nj8cwF/shIydbfXAX8DvAicPexMw5zrAzINdZ53n+uM7r+rgMeAjw9zng/INLR5PlOmxZrnS3rFX1WPAP9nyu7fAW6uqqPdOa93+68EvlZVR6vqpS74krzbd4ZcrwDHH9HPAl5ezlw1/ZvlzgWuAHZ1p+0CPrNcuWbItLaqxqvqWHfa48B5w87UHb4V+MKUIcPKdC7w2wxprg/INNR53uX5Sbf5TuA0+v8vDm2ez5DpjWHO85kydbcXPM+H8UvaPgx8IsljSSaSXNTtXwscmnTeIfoTdbn8ATCW5O+BPwW+OKxc+fk3y72vql7rDr0GvG8YuaZkmuw/AH897ExJrgQOVdX+KacN89/pfFbAXJ+U6TFWwDxP8o4k++jP54er6lmGPM+nyfTclFOWfZ5Pl2mx5vkwin8V8J6qugT4feAbA85dzmee7wSuq/6b0m4A7hpw7pLlSv/NcvfQf7Pc5F+NQfV/phv0uZckV6Z5A1+3/w+Bn1bVfxtmJuAY/VebTf6dUYNeJrwc/05vsgLm+jTfu6HP86o6Vv3f83Ue/QfGT045vuzzfJpMI8ePDWueT5Pp0/QfqBc8z4dR/IeAewGq6kngWJL30v+Rc/Jv+TyPn/0Yuhwurqrd3fbd/OzHpGXLlf6b5e4B/rKq7ut2v5ZkTXf8/cCPljPXpExfmZSJJL8FfBr4d5NOH1amf0Z/XfPpJC92n/epJO8bYiYY8lyfIdPQ5/lxVfV/gW8CH2XI83yaTBd1WX6LIc3zaTL9MvBBFmOeL/YTEtM8QbGen38S9fPAH3Xb5wN/P+XJiXd2X9zf0b3cdJly/S/g33TbnwKeXM5c9B+5/yvwZ1P2fxnY0W3/AW9/gmnJcg3ItBl4FnjvlP1DyzTlnOme9BrGv9PQ5vqATMOe5+8Fzuq2VwPf6nIMc57PlGmY83zaTIs1zxf1mzpN+K8BPwT+H/AD4N/Tf9b5L4EDwFP0f23z8fNvpP+kxPN0rzxY4lw/nZTrIvrrsvuA/wlsWM5c9F9FcKz7/Hu7j83A2cBDwN8Ce45PhuXINUOmy4AXgO9P2vefh51pyjnfO/4/xBAzbR7mXB/wvRv2PL+A/oPPPmA/8Pvd/mHO85kyDXOeT5tpsea5b+CSpMb4pxclqTEWvyQ1xuKXpMZY/JLUGItfkhpj8UtSYyx+SWqMxS9Jjfn/SdTvHF+l/A0AAAAASUVORK5CYII="></div></div></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 81px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 18px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### Based on the scatterplot created from the code above, interpret the relationship you see. What do you notice?</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;">240 is the optimal length. </span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 81px;"></div><div class="CodeMirror-gutters" style="display: none; height: 96px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><h3 id="Based-on-the-scatterplot-created-from-the-code-above,-interpret-the-relationship-you-see.-What-do-you-notice?">Based on the scatterplot created from the code above, interpret the relationship you see. What do you notice?<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#Based-on-the-scatterplot-created-from-the-code-above,-interpret-the-relationship-you-see.-What-do-you-notice?">¶</a></h3>
+<p>240 is the optimal length. </p>
+</div></div></div><div class="cell text_cell unselected rendered" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" not-content="true"></div><div class="CodeMirror-gutter-filler" not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 15px; min-height: 203px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 0px; top: 0px; height: 18px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### In the abstract the researchers stated, "the results showed that the food-pinching performance was significantly affected by the length of the chopsticks, and that chopsticks of about 240 and 180 mm long were optimal for adults and pupils, respectively."</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### (1) Based on the data you have analyzed (that is, the adult data only), do you agree with the claim?</span></span></pre><pre class=""><span style="padding-right: 0.1px;">If only going by this data, then yes.  However, 31 is a rather small sample size.  Also, it has no mention of prior experience.  It could also be that participants started with the smaller ones first, then got more comfortable as they went along and were able to perform better.  Than later they suffered fatigue from pinching so many peanuts and performance may have dropped.</span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-header cm-header-3">### (2) Why?</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 15px; width: 1px; top: 203px;"></div><div class="CodeMirror-gutters" style="display: none; height: 218px;"></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"><h3 id="In-the-abstract-the-researchers-stated,-&quot;the-results-showed-that-the-food-pinching-performance-was-significantly-affected-by-the-length-of-the-chopsticks,-and-that-chopsticks-of-about-240-and-180-mm-long-were-optimal-for-adults-and-pupils,-respectively.&quot;">In the abstract the researchers stated, "the results showed that the food-pinching performance was significantly affected by the length of the chopsticks, and that chopsticks of about 240 and 180 mm long were optimal for adults and pupils, respectively."<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#In-the-abstract-the-researchers-stated,-"the-results-showed-that-the-food-pinching-performance-was-significantly-affected-by-the-length-of-the-chopsticks,-and-that-chopsticks-of-about-240-and-180-mm-long-were-optimal-for-adults-and-pupils,-respectively."">¶</a></h3>
+<h3 id="(1)-Based-on-the-data-you-have-analyzed-(that-is,-the-adult-data-only),-do-you-agree-with-the-claim?">(1) Based on the data you have analyzed (that is, the adult data only), do you agree with the claim?<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#(1)-Based-on-the-data-you-have-analyzed-(that-is,-the-adult-data-only),-do-you-agree-with-the-claim?">¶</a></h3>
+<p>If only going by this data, then yes.  However, 31 is a rather small sample size.  Also, it has no mention of prior experience.  It could also be that participants started with the smaller ones first, then got more comfortable as they went along and were able to perform better.  Than later they suffered fatigue from pinching so many peanuts and performance may have dropped.</p>
+<h3 id="(2)-Why?">(2) Why?<a class="anchor-link" href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#(2)-Why?">¶</a></h3>
+</div></div></div></div><div class="end_space"></div></div>
+        <div id="tooltip" class="ipython_tooltip" style="display:none"><div class="tooltipbuttons"><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" role="button" class="ui-button"><span class="ui-icon ui-icon-close">Close</span></a><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" class="ui-corner-all" role="button" id="expanbutton" title="Grow the tooltip vertically (press shift-tab twice)"><span class="ui-icon ui-icon-plus">Expand</span></a><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" role="button" class="ui-button" title="show the current docstring in pager (press shift-tab 4 times)"><span class="ui-icon ui-icon-arrowstop-l-n">Open in Pager</span></a><a href="http://localhost:8888/notebooks/Data_Analyst_ND_Project0.ipynb#" role="button" class="ui-button" title="Tooltip will linger for 10 seconds while you type" style="display: none;"><span class="ui-icon ui-icon-clock">Close</span></a></div><div class="pretooltiparrow"></div><div class="tooltiptext smalltooltip"></div></div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+
+<div id="pager" class="ui-resizable">
+    <div id="pager-contents">
+        <div id="pager-container" class="container"></div>
+    </div>
+    <div id="pager-button-area"><a role="button" title="Open the pager in an external window" class="ui-button"><span class="ui-icon ui-icon-extlink"></span></a><a role="button" title="Close the pager" class="ui-button"><span class="ui-icon ui-icon-close"></span></a></div>
+<div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div></div>
+
+
+
+
+
+
+<script type="text/javascript">
+    sys_info = {"os_name": "posix", "sys_version": "2.7.10 |Anaconda 2.3.0 (64-bit)| (default, May 28 2015, 17:02:03) \n[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]", "default_encoding": "UTF-8", "sys_platform": "linux2", "ipython_version": "3.2.0", "ipython_path": "/home/adev/anaconda/lib/python2.7/site-packages/IPython", "commit_source": "installation", "platform": "Linux-3.16.0-43-generic-x86_64-with-debian-jessie-sid", "sys_executable": "/home/adev/anaconda/bin/python", "commit_hash": "8b0eef4"};
+</script>
+
+<script src="./Data_Analyst_ND_Project0_files/encoding.js" charset="utf-8"></script>
+
+<script src="./Data_Analyst_ND_Project0_files/main.js" charset="utf-8"></script>
+
+
+
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Size1, monospace;"></div></div></body></html>
